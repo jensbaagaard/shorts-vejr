@@ -1,24 +1,26 @@
-import type { NextPage } from 'next'
-import {useEffect} from "react";
+import type {NextPage} from 'next'
 import LandingPage from "../features/LandingPage";
 
+export type Status = "OK" | "NO_IP" | "NO_IP_API"
 
+const Home: NextPage = ({ip, loc, status}: any) => {
 
-const Home: NextPage = ({ip,loc}:any) => {
-
-  return (
-      <LandingPage ip={ip} loc={loc}/>
-  )
+    return (
+        <LandingPage ip={ip} loc={loc} status={status}/>
+    )
 }
 
 export default Home
 
-Home.getInitialProps = async ({ req }) => {
-    const ip = req!.headers["x-real-ip"] || req!.connection.remoteAddress;
-    const loc = await fetch(" http://ip-api.com/json/77.243.62.123",{method:"GET",
+Home.getInitialProps = async ({req}) => {
+    let status:Status = "OK"
+    const devIp = process.env.DEV_IP;
+    const ip =!!devIp ? devIp :  (req!.headers["x-real-ip"] || req!.connection.remoteAddress);
+    if(!ip) status = "NO_IP"
+    const loc = await fetch(" http://ip-api.com/json/" + ip, {
+        method: "GET",
         credentials: 'same-origin',
-    }).then(res=>res.json())
-    
-    console.log(loc)
-    return { ip,loc};
+    }).then(res => res.json())
+    if(loc.status !== "success") status = "NO_IP_API"
+    return {ip, loc, status};
 };
