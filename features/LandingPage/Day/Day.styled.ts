@@ -50,14 +50,19 @@ export const Title = styled.div`
 export const Hours = styled.div`
   height: 46px;
   display: flex;
-  gap: 8px;
 `
 
 export const Hour = styled.div`
+  width: 16px;
+  justify-content: center;
   height: 100%;
   display: flex;
   align-items: end;
   opacity: 0.5;
+  &:hover{
+    opacity: 1;
+    transition: opacity 200ms;
+  }
 `
 
 export const HourBar = styled.div<{ height: number, warmth:Warmth }>`

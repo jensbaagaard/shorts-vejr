@@ -44,6 +44,7 @@ function calculateVisualData(data:WeatherData[]){
 const Day = ({data}: DayProps) => {
     const [hours,setHours] = useState<WeaterDataWithVisual[]>([])
     const [warmestHour,setWarmestHour] = useState<WeatherData|undefined>()
+    const [targetHour,setTargetHour] = useState<WeatherData|undefined>()
     useEffect(() => {
         const vd = calculateVisualData(data);
         setHours(vd.data)
@@ -61,7 +62,7 @@ const Day = ({data}: DayProps) => {
                                 <TempIcon/>
                             </S.IconWrapper>
                             <S.IconText>
-                                {Math.round(warmestHour.perceivedTemperature)}deg
+                                {!!targetHour?Math.round(targetHour.perceivedTemperature):Math.round(warmestHour.perceivedTemperature)}deg
                             </S.IconText>
                         </S.FlexColum>
                         <S.FlexColum>
@@ -70,7 +71,7 @@ const Day = ({data}: DayProps) => {
                                 <WindIcon/>
                             </S.IconWrapper>
                             <S.IconText>
-                                {warmestHour.windSpeed}ms
+                                {!!targetHour?targetHour.windSpeed: warmestHour.windSpeed}ms
                             </S.IconText>
                         </S.FlexColum>
                         <S.FlexColum>
@@ -79,7 +80,7 @@ const Day = ({data}: DayProps) => {
                                 <SunIcon/>
                             </S.IconWrapper>
                             <S.IconText>
-                                {Math.round((warmestHour.cloudAreaFraction-100)*-1)}%
+                                {!!targetHour? Math.round((targetHour.cloudAreaFraction-100)*-1):Math.round((warmestHour.cloudAreaFraction-100)*-1)}%
                             </S.IconText>
                         </S.FlexColum>
                     </S.Top>
@@ -90,7 +91,7 @@ const Day = ({data}: DayProps) => {
                 </>
             }
             <S.Hours>
-                {hours.map(h=><S.Hour>
+                {hours.map(h=><S.Hour onMouseEnter={()=>{setTargetHour(h)}} onMouseLeave={()=>{setTargetHour(undefined)}}>
                     <S.HourBar height={h.height} warmth={h.warmth}/>
                 </S.Hour>)}
             </S.Hours>
