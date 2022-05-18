@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import {Warmth} from "./index";
 
 export const Wrapper = styled.div`
@@ -52,8 +52,11 @@ export const Hours = styled.div`
   display: flex;
 `
 
-export const Hour = styled.div`
+export const Hour = styled.div<{warmth:Warmth}>`
   cursor: pointer;
+  ${props=> props.warmth === "noData" && css`
+    pointer-events: none;
+  `}
   width: 16px;
   justify-content: center;
   height: 100%;
@@ -71,5 +74,8 @@ export const HourBar = styled.div<{ height: number, warmth:Warmth }>`
   border-radius: 4px;
   height: calc(${props => props.height * 100}% + 8px);
   background-color:   ${props=>props.theme.green};
-
+  ${props=> props.warmth === "noData" && css`
+    background-color: ${props.theme.bgLight};
+    pointer-events: none;
+  `}
 `
