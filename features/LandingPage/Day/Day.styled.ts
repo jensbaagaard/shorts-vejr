@@ -53,6 +53,7 @@ export const Hours = styled.div`
 `
 
 export const Hour = styled.div`
+  cursor: pointer;
   width: 16px;
   justify-content: center;
   height: 100%;
