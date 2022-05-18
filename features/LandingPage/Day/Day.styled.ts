@@ -73,7 +73,16 @@ export const HourBar = styled.div<{ height: number, warmth:Warmth }>`
   width: 8px;
   border-radius: 4px;
   height: calc(${props => props.height * 100}% + 8px);
-  background-color:   ${props=>props.theme.green};
+  ${props=> props.warmth === "warm" && css`
+    background-color:   ${props=>props.theme.green};
+  `}
+  ${props=> props.warmth === "medium" && css`
+    background-color:   ${props=>props.theme.yellow};
+  `}
+  ${props=> props.warmth === "cold" && css`
+    background-color:   ${props=>props.theme.red};
+  `}
+
   ${props=> props.warmth === "noData" && css`
     background-color: ${props.theme.bgLight};
     pointer-events: none;
