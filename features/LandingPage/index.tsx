@@ -14,13 +14,14 @@ interface LandingPageProps {
 
 const LandingPage = ({ip, loc, status}: LandingPageProps) => {
     const [weatherData, setWeatherData] = useState<WeatherData[]|undefined>()
-    const [date, setDate] = useState(new Date())
+    const [date] = useState(new Date())
     useEffect(() => {
         if (status !== "OK") return
         (async () => {
             const wd = await getWeatherData(loc.lat, loc.lon)
             setWeatherData(wd)
-            console.log(wd)
+            //console.log(wd)
+            console.log(`status: ${status} \n${ip} \n${loc.city}`)
         })();
     }, [])
     return (
@@ -28,14 +29,8 @@ const LandingPage = ({ip, loc, status}: LandingPageProps) => {
             {weatherData &&
             <>
                 <Day data={weatherData.filter(h => isSameDay(h.date, date))}/>
-                <button onClick={() => {
-                    setDate(addDays(date, 1))
-                }}>next day
-                </button>
             </>
             }
-
-            {`status: ${status} \n${ip} \n${loc.city}`}
         </S.Wrapper>
     )
 }
