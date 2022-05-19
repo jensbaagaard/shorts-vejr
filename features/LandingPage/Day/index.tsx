@@ -111,7 +111,7 @@ const Day = ({data}: DayProps) => {
                     </S.Top>
 
                     <S.Title>
-                        {warmestHour.perceivedTemperature > 16 ? "Det er’d" : "nix"}
+                        {warmestHour.perceivedTemperature > 16 ? "Jep🔥" : "Nix"}
                     </S.Title>
                 </>
             }
