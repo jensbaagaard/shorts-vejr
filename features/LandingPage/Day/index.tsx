@@ -17,9 +17,9 @@ interface WeaterDataWithVisual extends WeatherData {
     warmth: Warmth
 }
 
-function calculateWarmth(temp:number):Warmth{
-    if(temp>17) return "warm"
-    if(temp>14) return "medium"
+function calculateWarmth(temp: number): Warmth {
+    if (temp > 17) return "warm"
+    if (temp > 14) return "medium"
     else return "cold"
 }
 
@@ -55,8 +55,8 @@ function calculateVisualData(data: WeatherData[]) {
         windSpeed: 0
     }))
     for (let i = 0; i < allHours.length; i++) {
-        let findData = weatherDataWithVisual.find(wd=>isSameHour(wd.date,allHours[i].date))
-        if(!!findData)
+        let findData = weatherDataWithVisual.find(wd => isSameHour(wd.date, allHours[i].date))
+        if (!!findData)
             allHours[i] = findData
     }
     return {
@@ -87,7 +87,7 @@ const Day = ({data}: DayProps) => {
                                 <TempIcon/>
                             </S.IconWrapper>
                             <S.IconText>
-                                {!!targetHour ? Math.round(targetHour.perceivedTemperature) : Math.round(warmestHour.perceivedTemperature)}deg
+                                {!!targetHour ? Math.round(targetHour.perceivedTemperature) : Math.round(warmestHour.perceivedTemperature)}c°
                             </S.IconText>
                         </S.FlexColum>
                         <S.FlexColum>
@@ -115,15 +115,22 @@ const Day = ({data}: DayProps) => {
                     </S.Title>
                 </>
             }
-            <S.Hours>
-                {hours.map(h => <S.Hour warmth={h.warmth} onMouseEnter={() => {
-                    setTargetHour(h)
-                }} onMouseLeave={() => {
-                    setTargetHour(undefined)
-                }}>
-                    <S.HourBar height={h.height} warmth={h.warmth}/>
-                </S.Hour>)}
-            </S.Hours>
+            <S.FlexColum>
+                <S.Hours>
+                    {hours.map(h => <S.Hour warmth={h.warmth} onMouseEnter={() => {
+                        setTargetHour(h)
+                    }} onMouseLeave={() => {
+                        setTargetHour(undefined)
+                    }}>
+                        <S.HourBar height={h.height} warmth={h.warmth}/>
+                    </S.Hour>)}
+                </S.Hours>
+                <S.SpaceBetween>
+                    <S.TimeText align={"left"}>0</S.TimeText>
+                    <S.TimeText align={"center"}>12</S.TimeText>
+                    <S.TimeText align={"right"}>23</S.TimeText>
+                </S.SpaceBetween>
+            </S.FlexColum>
         </S.Wrapper>
     )
 }
