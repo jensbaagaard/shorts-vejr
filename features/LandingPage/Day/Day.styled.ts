@@ -45,6 +45,11 @@ export const Title = styled.div`
   color: ${props => props.theme.text};
   text-align: center;
   margin: 64px 0;
+  @media(max-width: 600px){
+    font-size: 70px;
+    line-height: 100px;
+
+  }
 `
 
 export const Hours = styled.div`
@@ -67,10 +72,17 @@ export const Hour = styled.div<{warmth:Warmth}>`
     opacity: 1;
     transition: opacity 200ms;
   }
+  
+  @media(max-width: 600px){
+    width: 12px;
+  }
 `
 
 export const HourBar = styled.div<{ height: number, warmth:Warmth }>`
   width: 8px;
+  @media(max-width: 600px){
+    width: 6px;
+  }
   border-radius: 4px;
   height: calc(${props => props.height * 100}% + 8px);
   ${props=> props.warmth === "warm" && css`
