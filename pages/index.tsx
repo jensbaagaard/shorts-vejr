@@ -1,15 +1,22 @@
 import type {NextPage} from 'next'
 import LandingPage from "../features/LandingPage";
 import {ThemeProvider} from "styled-components";
-import {dark} from "../themes";
+import {dark} from "../styles/themes";
+import Head from "next/head";
 
 export type Status = "OK" | "NO_IP" | "NO_IP_API"
 
 const Home: NextPage = ({ip, loc, status}: any) => {
 
     return (
-        <ThemeProvider theme={dark}> <LandingPage ip={ip} loc={loc} status={status}/>
-        </ThemeProvider>
+        <>
+            <Head>
+                <title>Er det shorts vejr idag?</title>
+                <meta name={"description"} content={"Find ud af om det er varmt nok til shorts idag"}/>
+            </Head>
+            <ThemeProvider theme={dark}> <LandingPage ip={ip} loc={loc} status={status}/>
+            </ThemeProvider>
+        </>
     )
 }
 
