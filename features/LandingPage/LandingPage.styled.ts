@@ -15,7 +15,7 @@ export const ColdResistanceSliderWrapper = styled.div`
   width: 100%;
   max-width: 500px;
   padding: 0 32px;
-  margin-top: 16px;
+  margin-top: 32px;
 `
 
 export const PoweredByWrapper = styled.div`

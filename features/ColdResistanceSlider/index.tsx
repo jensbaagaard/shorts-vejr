@@ -1,5 +1,5 @@
 import * as S from "./ColdResistanceSlider.styled"
-import {useEffect, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 
 interface ColdResistanceSliderProps{
     value:number,
@@ -7,19 +7,22 @@ interface ColdResistanceSliderProps{
 }
 
 const ColdResistanceSlider = ({value,onChange}:ColdResistanceSliderProps) => {
-    const [dragging,setDragging] = useState(false)
-    useEffect(()=>{
-
-    },[dragging])
-    function handleSliderMouseDown() {
-
+    function handleOnChange(e:ChangeEvent<HTMLInputElement>) {
+        onChange(+e.currentTarget.value)
     }
 
     return (
-        <S.Wrapper onMouseDown={handleSliderMouseDown}>
-            <S.Slider>
-            <S.Dot/>
-            </S.Slider>
+        <S.Wrapper>
+            <S.Input type={"range"}
+                     value={value}
+                     onChange={handleOnChange}
+                     min={1}
+                     max={5}
+                     style={{
+                         width: "100%",
+                     }}
+
+            />
         </S.Wrapper>
     )
 }

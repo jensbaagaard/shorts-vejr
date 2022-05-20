@@ -18,9 +18,12 @@ interface LandingPageProps {
 const LandingPage = ({ip, loc, status}: LandingPageProps) => {
     const [weatherData, setWeatherData] = useState<WeatherData[]|undefined>()
     const [date] = useState(new Date())
-    const [coldResistance, setColdResistance] = useState(2)
+    const [coldResistance, setColdResistance] = useState<number|undefined>(undefined)
 
     useEffect(() => {
+        const cr = window.localStorage.getItem("coldResistance")
+        if(!!cr) setColdResistance(+cr)
+        else setColdResistance(3)
         if (status !== "OK") return
         (async () => {
             const wd = await getWeatherData(loc.lat, loc.lon)
@@ -31,6 +34,7 @@ const LandingPage = ({ip, loc, status}: LandingPageProps) => {
     }, [])
 
     function handleColdResistanceChange(value:number) {
+        window.localStorage.setItem("coldResistance",value+"")
         setColdResistance(value);
     }
 
@@ -42,10 +46,10 @@ const LandingPage = ({ip, loc, status}: LandingPageProps) => {
 
     return (
         <S.Wrapper>
-            {weatherData &&
+            {weatherData && coldResistance !== undefined &&
             <>
                 <Location city={loc.city} onPosGotten={updatePos}/>
-                <Day data={weatherData.filter(h => isSameDay(h.date, date))}/>
+                <Day data={weatherData.filter(h => isSameDay(h.date, date))} coldResistance={coldResistance}/>
                 <S.ColdResistanceSliderWrapper>
                     <ColdResistanceSlider value={coldResistance} onChange={handleColdResistanceChange}/>
                 </S.ColdResistanceSliderWrapper>
