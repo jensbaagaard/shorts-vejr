@@ -68,7 +68,7 @@ function calculateVisualData(data: WeatherData[],coldResistance:number) {
     }
 }
 
-function CalculateWarmEnough(wd:WeaterDataWithVisual[],coldResistance):boolean{
+function CalculateWarmEnough(wd:WeaterDataWithVisual[],coldResistance:number):boolean{
     const warm = wd.filter(d=>d.warmth === "warm").length
     const medium = wd.filter(d=>d.warmth === "medium").length
     const cold = wd.filter(d=>d.warmth === "cold").length
