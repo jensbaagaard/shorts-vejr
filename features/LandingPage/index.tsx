@@ -3,7 +3,9 @@ import {Status} from "../../pages";
 import {useEffect, useState} from "react";
 import {getWeatherData, WeatherData} from "../weather";
 import Day from "./Day";
-import {addDays, isSameDay} from "date-fns";
+import {isSameDay} from "date-fns";
+import ColdResistanceSlider from "../ColdResistanceSlider";
+import Location from "../Location";
 
 interface LandingPageProps {
     ip: string
@@ -15,6 +17,8 @@ interface LandingPageProps {
 const LandingPage = ({ip, loc, status}: LandingPageProps) => {
     const [weatherData, setWeatherData] = useState<WeatherData[]|undefined>()
     const [date] = useState(new Date())
+    const [coldResistance, setColdResistance] = useState(2)
+
     useEffect(() => {
         if (status !== "OK") return
         (async () => {
@@ -24,11 +28,26 @@ const LandingPage = ({ip, loc, status}: LandingPageProps) => {
             console.log(`status: ${status} \n${ip} \n${loc.city}`)
         })();
     }, [])
+
+    function handleColdResistanceChange(value:number) {
+        setColdResistance(value);
+    }
+
+    async function updatePos(pos:[number,number]) {
+        const wd = await getWeatherData(pos[0], pos[1])
+        setWeatherData(wd)
+        return true
+    }
+
     return (
         <S.Wrapper>
             {weatherData &&
             <>
+                <Location city={loc.city} onPosGotten={updatePos}/>
                 <Day data={weatherData.filter(h => isSameDay(h.date, date))}/>
+                <S.ColdResistanceSliderWrapper>
+                    <ColdResistanceSlider value={coldResistance} onChange={handleColdResistanceChange}/>
+                </S.ColdResistanceSliderWrapper>
             </>
             }
         </S.Wrapper>

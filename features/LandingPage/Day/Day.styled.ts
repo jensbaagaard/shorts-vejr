@@ -1,10 +1,18 @@
 import styled, {css} from "styled-components";
 import {Warmth} from "./index";
 
+export const City = styled.div`
+  font-family: Poppins, sans-serif;
+  font-size: 100px;
+  font-weight: 300;
+  line-height: 125px;
+  color: ${props => props.theme.text};
+`
+
 export const Wrapper = styled.div`
   max-width: 500px;
   width: 100%;
-  padding: 32px;
+  padding: 0 32px;
   display: flex;
   flex-direction: column;
   align-items: center;

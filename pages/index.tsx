@@ -11,7 +11,7 @@ const Home: NextPage = ({ip, loc, status}: any) => {
     return (
         <>
             <Head>
-                <title>Er det shorts vejr idag?</title>
+                <title>Er det shortsvejr i dag?</title>
                 <meta name={"description"} content={"Find ud af om det er varmt nok til shorts idag"}/>
             </Head>
             <ThemeProvider theme={dark}> <LandingPage ip={ip} loc={loc} status={status}/>

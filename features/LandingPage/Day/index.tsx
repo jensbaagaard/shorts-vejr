@@ -74,7 +74,6 @@ const Day = ({data}: DayProps) => {
         const vd = calculateVisualData(data);
         setHours(vd.data)
         setWarmestHour(vd.max)
-
     }, [data])
     return (
         <S.Wrapper>
@@ -111,7 +110,7 @@ const Day = ({data}: DayProps) => {
                     </S.Top>
 
                     <S.Title>
-                        {warmestHour.perceivedTemperature > 16 ? "Jep🔥" : "Nix"}
+                        {warmestHour.perceivedTemperature > 18 ? "Jep🔥" : "Nix"}
                     </S.Title>
                 </>
             }
