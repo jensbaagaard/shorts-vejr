@@ -6,6 +6,7 @@ import Day from "./Day";
 import {isSameDay} from "date-fns";
 import ColdResistanceSlider from "../ColdResistanceSlider";
 import Location from "../Location";
+import PoweredBy from "../PoweredBy";
 
 interface LandingPageProps {
     ip: string
@@ -48,6 +49,10 @@ const LandingPage = ({ip, loc, status}: LandingPageProps) => {
                 <S.ColdResistanceSliderWrapper>
                     <ColdResistanceSlider value={coldResistance} onChange={handleColdResistanceChange}/>
                 </S.ColdResistanceSliderWrapper>
+                <S.PoweredByWrapper>
+                    <PoweredBy/>
+
+                </S.PoweredByWrapper>
             </>
             }
         </S.Wrapper>
