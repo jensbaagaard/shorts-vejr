@@ -14,14 +14,11 @@ const Home: NextPage = ({ip, loc, status}: any) => {
                 <title>Er det shortsvejr i dag?</title>
                 <meta name={"description"} content={"Find ud af om det er varmt nok til shorts idag"}/>
                 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V7WWJBZ7VQ"/>
-                <script>
-                    {`    window.dataLayer = window.dataLayer || [];
+                <script dangerouslySetInnerHTML={{__html:`        window.dataLayer = window.dataLayer || [];
                     function gtag(){dataLayer.push(arguments);}
                     gtag('js', new Date());
-
                     gtag('config', 'G-V7WWJBZ7VQ');
-                `}
-                </script>
+                `}}/>
             </Head>
             <ThemeProvider theme={dark}> <LandingPage ip={ip} loc={loc} status={status}/>
             </ThemeProvider>
