@@ -3,11 +3,6 @@ import styled, {css} from "styled-components";
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
-  opacity: 0.3;
-  transition: opacity 200ms;
-  :hover {
-    opacity: 1;
-  }
 `
 
 const trackH = "0.4em";
@@ -50,6 +45,11 @@ const thumb = css`
 `;
 
 export const Input = styled.input`
+  opacity: 0.4;
+  transition: opacity 200ms;
+  :hover,:active {
+    opacity: 1;
+  }
   direction: rtl;
   &,
   &::-webkit-slider-thumb {
