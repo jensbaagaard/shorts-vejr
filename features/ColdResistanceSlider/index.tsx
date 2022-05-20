@@ -1,4 +1,5 @@
 import * as S from "./ColdResistanceSlider.styled"
+import {useEffect, useState} from "react";
 
 interface ColdResistanceSliderProps{
     value:number,
@@ -6,7 +7,10 @@ interface ColdResistanceSliderProps{
 }
 
 const ColdResistanceSlider = ({value,onChange}:ColdResistanceSliderProps) => {
+    const [dragging,setDragging] = useState(false)
+    useEffect(()=>{
 
+    },[dragging])
     function handleSliderMouseDown() {
 
     }
