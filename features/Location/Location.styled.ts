@@ -20,7 +20,7 @@ export const Text = styled.div`
   font-family: Poppins, sans-serif;
   font-size: 16px;
   font-weight: 300;
-  color: ${props => props.theme.textSubtle};
+  color: ${props => props.theme.text};
 `
 
 export const IconWrapper = styled.div`

@@ -45,7 +45,7 @@ const thumb = css`
 `;
 
 export const Input = styled.input`
-  opacity: 0.4;
+  opacity: 0.7;
   transition: opacity 200ms;
   :hover,:active {
     opacity: 1;
