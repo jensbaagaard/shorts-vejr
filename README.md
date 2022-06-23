@@ -1,4 +1,4 @@
-[![Shorts-vejr](https://github.com/jbaagaard/shorts-vejr/raw/main/public/android-chrome-512x512.png)](https://shortsvejr.dk)
+[![Shorts-vejr](https://github.com/jbaagaard/shorts-vejr/raw/main/public/android-chrome-192x192.png)](https://shortsvejr.dk)
 
 Shorts-vejr
 
