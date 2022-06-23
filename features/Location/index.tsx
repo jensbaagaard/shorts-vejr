@@ -1,6 +1,6 @@
 import * as S from "./Location.styled"
-import Icon from "./Icon";
-import LocationIcon from "./Icon";
+import Icon from "./LocationIcon";
+import LocationIcon from "./LocationIcon";
 import {useState} from "react";
 
 interface LocationProps {

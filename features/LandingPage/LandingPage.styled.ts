@@ -1,6 +1,15 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+export const Body = styled.div`
+  z-index: 2;
   white-space: break-spaces;
   display: flex;
   justify-content: center;
@@ -8,7 +17,6 @@ export const Wrapper = styled.div`
   height: 100%;
   width: 100%;
   flex-direction: column;
-  gap: 16px
 `
 
 export const ColdResistanceSliderWrapper = styled.div`

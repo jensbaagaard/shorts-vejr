@@ -2,8 +2,27 @@ import styled, {css} from "styled-components";
 
 export const Wrapper = styled.div`
   width: 100%;
-  display: flex;
+  display: grid;
+  align-items: center;
+  gap: 16px;
+  grid-template-columns: auto 1fr auto;
+  opacity: 0.7;
+  transition: opacity 200ms;
+  :hover,:active {
+    opacity: 1;
+  }
 `
+
+export const SunhatWrapper = styled.div`
+  height: 50px;
+  width: 50px;
+`
+export const VikingWrapper = styled.div`
+  height: 50px;
+  width: 50px;
+`
+
+
 
 const trackH = "0.4em";
 const thumbD = "1.5em";
@@ -45,11 +64,6 @@ const thumb = css`
 `;
 
 export const Input = styled.input`
-  opacity: 0.7;
-  transition: opacity 200ms;
-  :hover,:active {
-    opacity: 1;
-  }
   direction: rtl;
   &,
   &::-webkit-slider-thumb {

@@ -48,15 +48,18 @@ const LandingPage = ({ip, loc, status}: LandingPageProps) => {
         <S.Wrapper>
             {weatherData && coldResistance !== undefined &&
             <>
-                <Location city={loc.city} onPosGotten={updatePos}/>
-                <Day data={weatherData.filter(h => isSameDay(h.date, date))} coldResistance={coldResistance}/>
-                <S.ColdResistanceSliderWrapper>
-                    <ColdResistanceSlider value={coldResistance} onChange={handleColdResistanceChange}/>
-                </S.ColdResistanceSliderWrapper>
+                <S.Body>
+                    <Location city={loc.city} onPosGotten={updatePos}/>
+                    <Day data={weatherData.filter(h => isSameDay(h.date, date))} coldResistance={coldResistance}/>
+                    <S.ColdResistanceSliderWrapper>
+                        <ColdResistanceSlider value={coldResistance} onChange={handleColdResistanceChange}/>
+                    </S.ColdResistanceSliderWrapper>
+                </S.Body>
                 <S.PoweredByWrapper>
                     <PoweredBy/>
-
                 </S.PoweredByWrapper>
+
+
             </>
             }
         </S.Wrapper>

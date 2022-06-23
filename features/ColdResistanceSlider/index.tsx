@@ -1,5 +1,7 @@
 import * as S from "./ColdResistanceSlider.styled"
 import {ChangeEvent, useEffect, useState} from "react";
+import SunhatIcon from "./SunhatIcon";
+import VikingIcon from "./VikingIcon";
 
 interface ColdResistanceSliderProps{
     value:number,
@@ -13,6 +15,9 @@ const ColdResistanceSlider = ({value,onChange}:ColdResistanceSliderProps) => {
 
     return (
         <S.Wrapper>
+            <S.SunhatWrapper>
+                <SunhatIcon/>
+            </S.SunhatWrapper>
             <S.Input type={"range"}
                      value={value}
                      onChange={handleOnChange}
@@ -23,6 +28,9 @@ const ColdResistanceSlider = ({value,onChange}:ColdResistanceSliderProps) => {
                      }}
 
             />
+            <S.VikingWrapper>
+                <VikingIcon/>
+            </S.VikingWrapper>
         </S.Wrapper>
     )
 }

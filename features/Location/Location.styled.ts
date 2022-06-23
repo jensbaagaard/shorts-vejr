@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
   user-select: none;
   border-radius: 16px;
   width: fit-content;
+  margin-bottom: 16px;
   &:hover{
     background-color: rgba(0,0,0,0.15);
     
