@@ -1,3 +1,6 @@
+[![Shorts-vejr](https://github.com/jbaagaard/shorts-vejr/raw/main/public/android-chrome-512x512.png)](https://shortsvejr.dk)
+
+Shorts-vejr
 
 [![License](https://img.shields.io/github/license/jbaagaard/sviggy)](https://github.com/jbaagaard/sviggy/blob/main/LICENSE)
 [![Vercel status](https://vercelbadge.vercel.app/api/jbaagaard/shorts-vejr)](https://shortsvejr.dk)
