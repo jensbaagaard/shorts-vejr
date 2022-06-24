@@ -7,6 +7,7 @@ import {isSameDay} from "date-fns";
 import ColdResistanceSlider from "../ColdResistanceSlider";
 import Location from "../Location";
 import PoweredBy from "../PoweredBy";
+import TextRain from "../TextRain";
 
 interface LandingPageProps {
     ip: string
@@ -58,8 +59,9 @@ const LandingPage = ({ip, loc, status}: LandingPageProps) => {
                 <S.PoweredByWrapper>
                     <PoweredBy/>
                 </S.PoweredByWrapper>
-
-
+                <S.TextRainWrapper>
+                    <TextRain size={[12,24]} text={["🔥"]} textSpeed={[1000,2000]} rotation={[-15,15]} opacity={[0,1]} spawnInterval={50} time={1000}/>
+                </S.TextRainWrapper>
             </>
             }
         </S.Wrapper>
