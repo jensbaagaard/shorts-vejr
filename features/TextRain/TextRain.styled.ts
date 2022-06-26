@@ -14,14 +14,15 @@ const RainAnimation = keyframes`
   100%{ bottom: 200%}
 `
 
+
 export const Rain = styled.div<TextProps>`
   height: fit-content;
   width: fit-content;
   position: absolute;
   bottom: 0;
-  animation-name: ${RainAnimation};
+  animation: ${RainAnimation} forwards;
   animation-duration: ${props=> props.textSpeed*2}ms;
-  
+  left: ${props => props.left}%;
   font-size: calc(${props=> props.size}px + 2vw);
   transform: rotate(${props=> props.rotation}deg);
   opacity: ${props=> props.opacity};

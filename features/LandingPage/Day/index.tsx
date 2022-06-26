@@ -9,6 +9,7 @@ import {eachHourOfInterval, isSameHour, setHours} from "date-fns";
 interface DayProps {
     data: WeatherData[]
     coldResistance:number
+    onCalculate:(warmth:boolean)=>void
 }
 
 export type Warmth = "cold" | "medium" | "warm" | "noData" | "lastHour"
@@ -76,15 +77,24 @@ function CalculateWarmEnough(wd:WeaterDataWithVisual[],coldResistance:number):bo
     else return (warm>=4+(coldResistance-3))
 }
 
-const Day = ({data,coldResistance}: DayProps) => {
+const Day = ({data,coldResistance, onCalculate}: DayProps) => {
     const [hours, setHours] = useState<WeaterDataWithVisual[]>([])
     const [warmestHour, setWarmestHour] = useState<WeatherData | undefined>()
     const [targetHour, setTargetHour] = useState<WeatherData | undefined>()
+    const [shortsWeather, setShortsWeather] = useState<boolean|undefined>()
     useEffect(() => {
         const vd = calculateVisualData(data,coldResistance);
         setHours(vd.data)
         setWarmestHour(vd.max)
     }, [data])
+    useEffect(()=>{
+        if(hours.length !== 0){
+            const warmth = CalculateWarmEnough(hours,coldResistance);
+            setShortsWeather(warmth)
+            onCalculate(warmth)
+        }
+
+    },[hours])
     return (
         <S.Wrapper>
             {warmestHour &&
@@ -120,7 +130,7 @@ const Day = ({data,coldResistance}: DayProps) => {
                     </S.Top>
 
                     <S.Title>
-                        {CalculateWarmEnough(hours,coldResistance) ? "Jep🔥" : "Nix"}
+                        {shortsWeather ? "Jep🔥" : "Nix"}
                     </S.Title>
                 </>
             }
