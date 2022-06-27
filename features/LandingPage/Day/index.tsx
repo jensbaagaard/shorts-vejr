@@ -130,7 +130,7 @@ const Day = ({data,coldResistance, onCalculate}: DayProps) => {
                     </S.Top>
 
                     <S.Title>
-                        {shortsWeather ? "Jep🔥" : "Nix"}
+                        {shortsWeather ? "🩳🔥" : "👖❄️"}
                     </S.Title>
                 </>
             }
