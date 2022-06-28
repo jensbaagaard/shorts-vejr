@@ -2,7 +2,7 @@ import * as S from "./LandingPage.styled"
 import {Status} from "../../pages";
 import {useEffect, useState} from "react";
 import {getWeatherData, WeatherData} from "../weather";
-import Day from "./Day";
+import Day from "../Day";
 import {isSameDay} from "date-fns";
 import ColdResistanceSlider from "../ColdResistanceSlider";
 import Location from "../Location";
@@ -68,7 +68,7 @@ const LandingPage = ({ip, loc, status}: LandingPageProps) => {
                     <S.TextRainWrapper>
                         {shortsWeather !== undefined &&
                             <TextRain size={[2, 100]} text={shortsWeather ? ["🔥"] : ["❄️"]} textSpeed={[1000, 2000]}
-                                      rotation={[-15, 15]} opacity={[0, 1]} spawnInterval={10} time={700}/>
+                                      rotation={[-20, 20]} opacity={[0.3, 1]} spawnInterval={10} time={700 }/>
                         }
                     </S.TextRainWrapper>
                 </>

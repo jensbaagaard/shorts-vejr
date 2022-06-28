@@ -1,5 +1,5 @@
 import * as S from "./Day.styled"
-import {WeatherData} from "../../weather";
+import {WeatherData} from "../weather";
 import {useEffect, useState} from "react";
 import {TempIcon} from "./icons/Temp";
 import {WindIcon} from "./icons/Wind";
@@ -130,13 +130,13 @@ const Day = ({data,coldResistance, onCalculate}: DayProps) => {
                     </S.Top>
 
                     <S.Title>
-                        {shortsWeather ? "🩳🔥" : "👖❄️"}
+                        {shortsWeather ? "🩳🔥":"👖❄️"}
                     </S.Title>
                 </>
             }
             <S.FlexColum>
                 <S.Hours>
-                    {hours.map(h => <S.Hour warmth={h.warmth} onMouseEnter={() => {
+                    {hours.map(h => <S.Hour key={"hour"+h.date.getHours()} warmth={h.warmth} onMouseEnter={() => {
                         setTargetHour(h)
                     }} onMouseLeave={() => {
                         setTargetHour(undefined)
