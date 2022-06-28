@@ -11,17 +11,10 @@ const Home: NextPage = ({ip, loc, status}: any) => {
     return (
         <>
             <Head>
-                <title>Er det shortsvejr i dag?</title>
+                <title>er det shorts vejr?</title>
                 <meta name={"description"} content={"Find ud af om det er varmt nok til shorts idag"}/>
-                <script async src="https://www.googletagmanager.com/gtag/js?id=G-V7WWJBZ7VQ"/>
-                <script dangerouslySetInnerHTML={{__html:`        window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', 'G-V7WWJBZ7VQ');
-                `}}/>
             </Head>
-            <ThemeProvider theme={dark}> <LandingPage ip={ip} loc={loc} status={status}/>
-            </ThemeProvider>
+            <LandingPage ip={ip} loc={loc} status={status}/>
         </>
     )
 }

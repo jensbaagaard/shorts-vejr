@@ -18,10 +18,9 @@ export const Wrapper = styled.div`
 
 export const Text = styled.div`
   margin-top: 4px;
-  font-family: Poppins, sans-serif;
   font-size: 16px;
-  font-weight: 300;
   color: ${props => props.theme.text};
+  text-transform: lowercase;
 `
 
 export const IconWrapper = styled.div`

@@ -1,5 +1,5 @@
 import * as S from "./Day.styled"
-import {WeatherData} from "../../weather";
+import {WeatherData} from "../weather";
 import {useEffect, useState} from "react";
 import {TempIcon} from "./icons/Temp";
 import {WindIcon} from "./icons/Wind";
@@ -8,8 +8,8 @@ import {eachHourOfInterval, isSameHour, setHours} from "date-fns";
 
 interface DayProps {
     data: WeatherData[]
-    coldResistance:number
-    onCalculate:(warmth:boolean)=>void
+    coldResistance: number
+    onCalculate: (warmth: boolean) => void
 }
 
 export type Warmth = "cold" | "medium" | "warm" | "noData" | "lastHour"
@@ -19,14 +19,14 @@ interface WeaterDataWithVisual extends WeatherData {
     warmth: Warmth
 }
 
-function calculateWarmth(temp: number, coldResistance:number): Warmth {
-    const warmCutoff = 19+((coldResistance-3)*2);
+function calculateWarmth(temp: number, coldResistance: number): Warmth {
+    const warmCutoff = 19 + ((coldResistance - 3) * 2);
     if (temp > warmCutoff) return "warm"
-    if (temp > (warmCutoff*0.8)) return "medium"
+    if (temp > (warmCutoff * 0.8)) return "medium"
     else return "cold"
 }
 
-function calculateVisualData(data: WeatherData[],coldResistance:number) {
+function calculateVisualData(data: WeatherData[], coldResistance: number) {
     let max = data[0]
     let min = data[0]
     for (let i = 0; i < data.length; i++) {
@@ -41,7 +41,7 @@ function calculateVisualData(data: WeatherData[],coldResistance:number) {
         weatherDataWithVisual.push({
             ...data[i],
             height: (data[i].perceivedTemperature - min.perceivedTemperature) / (max.perceivedTemperature - min.perceivedTemperature),
-            warmth: calculateWarmth(data[i].perceivedTemperature,coldResistance)
+            warmth: calculateWarmth(data[i].perceivedTemperature, coldResistance)
         })
     }
     const startHour = setHours(data[0].date.getTime(), 0)
@@ -69,32 +69,32 @@ function calculateVisualData(data: WeatherData[],coldResistance:number) {
     }
 }
 
-function CalculateWarmEnough(wd:WeaterDataWithVisual[],coldResistance:number):boolean{
-    const warm = wd.filter(d=>d.warmth === "warm").length
-    const medium = wd.filter(d=>d.warmth === "medium").length
-    const cold = wd.filter(d=>d.warmth === "cold").length
-    if(!medium && !cold) return true
-    else return (warm>=4+(coldResistance-3))
+function CalculateWarmEnough(wd: WeaterDataWithVisual[], coldResistance: number): boolean {
+    const warm = wd.filter(d => d.warmth === "warm").length
+    const medium = wd.filter(d => d.warmth === "medium").length
+    const cold = wd.filter(d => d.warmth === "cold").length
+    if (!medium && !cold) return true
+    else return (warm >= 4 + (coldResistance - 3))
 }
 
-const Day = ({data,coldResistance, onCalculate}: DayProps) => {
+const Day = ({data, coldResistance, onCalculate}: DayProps) => {
     const [hours, setHours] = useState<WeaterDataWithVisual[]>([])
     const [warmestHour, setWarmestHour] = useState<WeatherData | undefined>()
     const [targetHour, setTargetHour] = useState<WeatherData | undefined>()
-    const [shortsWeather, setShortsWeather] = useState<boolean|undefined>()
+    const [shortsWeather, setShortsWeather] = useState<boolean | undefined>()
     useEffect(() => {
-        const vd = calculateVisualData(data,coldResistance);
+        const vd = calculateVisualData(data, coldResistance);
         setHours(vd.data)
         setWarmestHour(vd.max)
     }, [data])
-    useEffect(()=>{
-        if(hours.length !== 0){
-            const warmth = CalculateWarmEnough(hours,coldResistance);
+    useEffect(() => {
+        if (hours.length !== 0) {
+            const warmth = CalculateWarmEnough(hours, coldResistance);
             setShortsWeather(warmth)
             onCalculate(warmth)
         }
 
-    },[hours])
+    }, [hours])
     return (
         <S.Wrapper>
             {warmestHour &&
@@ -130,13 +130,13 @@ const Day = ({data,coldResistance, onCalculate}: DayProps) => {
                     </S.Top>
 
                     <S.Title>
-                        {shortsWeather ? "Jep🔥" : "Nix"}
+                        {shortsWeather ? "🩳🔥" : "👖❄️"}
                     </S.Title>
                 </>
             }
             <S.FlexColum>
                 <S.Hours>
-                    {hours.map(h => <S.Hour warmth={h.warmth} onMouseEnter={() => {
+                    {hours.map(h => <S.Hour key={"hour" + h.date.getHours()} warmth={h.warmth} onMouseEnter={() => {
                         setTargetHour(h)
                     }} onMouseLeave={() => {
                         setTargetHour(undefined)

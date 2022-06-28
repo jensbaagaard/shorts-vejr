@@ -33,9 +33,7 @@ export const FlexColum = styled.div`
 
 export const IconText = styled.div`
   margin-top: 16px;
-  font-family: Poppins, sans-serif;
   font-size: 22px;
-  font-weight: 300;
   line-height: 33px;
   color: ${props => props.theme.textSubtle};
 
@@ -47,7 +45,6 @@ export const IconWrapper = styled.div`
 `
 
 export const Title = styled.div`
-  font-family: Poppins, sans-serif;
   font-size: 100px;
   font-weight: 300;
   line-height: 125px;
@@ -120,9 +117,7 @@ export const SpaceBetween = styled.div`
 
 export const TimeText = styled.div<{align:string}>`
   margin-top: 4px;
-  font-family: Poppins, sans-serif;
   font-size: 12px;
-  font-weight: 300;
   color: ${props => props.theme.text};
   text-align: ${props=>props.align};
 `

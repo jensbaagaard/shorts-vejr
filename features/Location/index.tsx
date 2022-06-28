@@ -27,7 +27,7 @@ const Location = ({city,onPosGotten}: LocationProps) => {
 
     return (
         <S.Wrapper onClick={getPos}>
-            <S.Text>{updatedPos? "Din lokation" : city}</S.Text>
+            <S.Text>{updatedPos? "din lokation" : city}</S.Text>
             <S.IconWrapper>
                 <LocationIcon/>
             </S.IconWrapper>
